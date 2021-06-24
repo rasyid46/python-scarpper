@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block body %}
-  <table class="table">
+  <table class="table"  id="example" class="display" style="width:100%" >
   <thead>
     <tr>
       <th scope="col">Code</th>
@@ -22,4 +22,15 @@
   </tbody>
 </table>
 
+{% endblock %}
+{% block script %}
+
+<script>
+$(document).ready(function(){
+ $('#example').DataTable();
+  $("button").click(function(){
+    $("p").hide();
+  });
+});
+</script>
 {% endblock %}
