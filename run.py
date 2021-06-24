@@ -1,23 +1,23 @@
-import requests
-import bs4
+
 
 from flask import Flask, render_template
+
+from templates.package.apis import idrRates, detikPopuler
 
 app =Flask(__name__)
 
 @app.route('/')
 def home():
-    return render_template('index.html')
+    return render_template('base.html')
 @app.route('/populer')
 def detik_populer():
-    url = 'https://www.detik.com/terpopuler?tag_from=wp_cb_mostPopular_more'
-    contents = requests.get(url)
+    images = detikPopuler()
+    return render_template('detikscraper.html', images=images)
 
-    respon = bs4.BeautifulSoup(contents.text, 'html.parser')
-    data = respon.find(attrs={'class': 'grid-row list-content'})
-    titles = data.findAll(attrs={'class': 'media__title'})
-    images = data.findAll(attrs={'class': 'media__image'})
-    return render_template('index.html', images=images)
+@app.route('/rates')
+def idr_rates():
+    datas = idrRates()
+    return render_template('idrrates.html', datas=datas)
 if __name__=='__main__':
     app.run(debug=True)
 
