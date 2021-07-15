@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block body %}
+  {% for headline in headlines %}
+
+    <img src=" {{headline.find('a').find('img')['data-src']}}" alt="Girl in a jacket" width="500" height="600">
+       <a href=" {{ headline.find('a')['href'] | safe }} " >
+       {{ headline.find('a').find('img')['alt'] | safe }}
+   </a> <br/>
+  {%  endfor %}
+
+{% endblock %}

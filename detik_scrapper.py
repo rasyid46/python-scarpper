@@ -10,4 +10,6 @@ titles = data.findAll(attrs={'class': 'media__title'})
 images = data.findAll(attrs={'class': 'media__image'})
 
 for image in images:
-    print(image.find('a').find('img')['title'])
+    print(image.find('a'))
+# for image in images:
+#    print(image.find('a').find('img')['title'])
