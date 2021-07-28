@@ -49,3 +49,4 @@ class RwidSpider(scrapy.Spider):
             "stock" : stock,
             "desc" : description
         }
+
