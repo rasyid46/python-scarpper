@@ -10,15 +10,8 @@ class JktnSpider(scrapy.Spider):
     start_urls = ['https://www.jakartanotebook.com/pc-and-laptop/']
 
     def parse(self, response):
-        detail_products: List[Selector]  = response.css(".product-list-wrapper .product-list")
-        for detail in detail_products:
+        detail_products: List[Selector]  = response.css(".product-list__header")
+        for product in detail_products:
+            href = product.attrib.get("href")
+            yield {"title": response.css("title::text").get(),"href":href}
 
-            link = detail.find(attrs={'class': 'product-list__img'}).find('a')
-
-         #   yield {"href": link}
-            yield response.follow(href, callback=self.parse_detail())
-
-        yield {"title": response.css("title::text").get()}
-
-    def parse_detail(self, response):
-        yield {"title": response.css("title::text").get()}
