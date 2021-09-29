@@ -43,6 +43,7 @@ def create_csv():
             data = json.load(json_file)
             datas.append(data)
 
+    print('datas',datas)
     df = pd.DataFrame(datas)
     df.to_csv('result.csv',index=False)
 
